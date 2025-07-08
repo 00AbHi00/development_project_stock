@@ -1,60 +1,120 @@
-,numTrans,tradedShares,amount,company.name,company.code,company.cat,price.max,price.min,price.close,price.prevClose,price.diff,2010-04-15
-0,46,1520,375070,Api Finance Limited,,,247,240,240,243,-3.0,2010-04-15
-3,2,30,12900,Arun Valley Hydropower Development Co. Ltd.,AHPC,Hydro Power,430,430,430,438,-8.0,2010-04-15
-6,2,60,14400,Axis Development Bank Limited,,,240,240,240,240,,2010-04-15
-9,7,440,134040,Bank of Asia Nepal Limited,,,311,300,300,308,-8.0,2010-04-15
-12,6,273,202424,Bank of Kathmandu Ltd.,BOKL,Commercial Banks,747,740,747,740,7.0,2010-04-15
-15,3,350,72600,Bhrikuti Vikash Bank Limited,,,212,204,212,200,12.0,2010-04-15
-18,7,800,2496000,Bishal Bazar Company Limited,BBC,Tradings,3120,3120,3120,3060,60.0,2010-04-15
-21,7,487,95794,Business Universal Development Bank Ltd.,,,206,189,189,210,-21.0,2010-04-15
-24,3,146,119218,Butwal Power Company Limited,BPCL,Hydro Power,833,801,801,850,-49.0,2010-04-15
-27,1,50,8800,Capital Merchant Bank & Finance Co. Ltd.,CMB,Finance,176,176,176,179,-3.0,2010-04-15
-30,3,1210,1077200,Chilime Hydropower Company Limited,CHCL,Hydro Power,900,890,890,898,-8.0,2010-04-15
-33,4,180,73750,Citizen Bank International Limited,CZBIL,Commercial Banks,415,406,406,409,-3.0,2010-04-15
-36,2,50,14580,Crystal Finance Ltd.,CFL,Finance,294,290,290,295,-5.0,2010-04-15
-39,1,64,11008,Deva Bikas Bank Limited,,,172,172,172,171,1.0,2010-04-15
-42,7,330,465581,Everest Bank Limited Con. Pref.,EBLCP,Preferred Stock,1430,1402,1410,1449,-39.0,2010-04-15
-45,2,330,100980,Everest Insurance Co. Ltd.,EIC,Non Life Insurance,306,306,306,300,6.0,2010-04-15
-48,9,470,135180,Excel Development Bank Ltd.,EDBL,Development Banks,304,283,285,310,-25.0,2010-04-15
-51,29,91470,21038100,Fewa Bikas Bank Ltd. Promoter Share,,,230,230,230,230,,2010-04-15
-54,1,100,26500,Global IME Bank Limited Debenture 2086/87,GBILD86/87,Corporate Debenture,265,265,265,265,,2010-04-15
-57,1,100,19700,Gorkha Finance Ltd.,,,197,197,197,197,,2010-04-15
-60,3,4283,1075088,Grand Bank Nepal Limited,,,256,250,250,251,-1.0,2010-04-15
-63,6,170,70020,Gurkha Development Bank Limited,,,426,402,426,410,16.0,2010-04-15
-66,2,20,4220,Gurkhas Finance Ltd.,GUFL,Finance,213,209,209,217,-8.0,2010-04-15
-69,2,38,33060,Himalayan Bank Limited,HBL,Commercial Banks,870,870,870,860,10.0,2010-04-15
-72,3,396,89628,ICFC Finance Limited,ICFC,Finance,230,223,223,234,-11.0,2010-04-15
-75,1,40,10520,Infrastructure Development Bank Ltd.,,,263,263,263,268,-5.0,2010-04-15
-78,2,162,39730,Kailash Bikas Bank Ltd.,,,249,245,249,250,-1.0,2010-04-15
-81,8,810,174280,Kaski Finance Limited,,,221,212,221,216,5.0,2010-04-15
-84,1,100,41700,Kumari Bank Limited,KBL,Commercial Banks,417,417,417,425,-8.0,2010-04-15
-87,1,249,61005,Lumbini Bank Limited,,,245,245,245,250,-5.0,2010-04-15
-90,70,2800,721560,Lumbini Bikas Bank Ltd.,LBBL,Development Banks,263,254,257,253,4.0,2010-04-15
-93,64,640,101120,Lumbini General Insurance Co. Ltd.,LGIL,Non Life Insurance,158,158,158,155,3.0,2010-04-15
-96,13,180,37930,Madhyamanchal Gramin Development Bank Ltd.,,,219,208,219,211,8.0,2010-04-15
-99,3,126,25452,Mahalaxmi BikasBank Limited,,,206,198,198,210,-12.0,2010-04-15
-102,2,50,11610,Miteri Development Bank Limited,MDB,Development Banks,234,231,231,234,-3.0,2010-04-15
-105,40,3464,6935470,Nabil Bank Limited,NABIL,Commercial Banks,2040,2000,2000,2040,-40.0,2010-04-15
-108,2,87,25615,Narayani National Finance Limited,,,295,294,294,290,4.0,2010-04-15
-111,4,1200,62200,National Hydro Power Company Limited,NHPC,Hydro Power,52,51,51,52,-1.0,2010-04-15
-114,7,800,173400,Nepal Bangladesh Bank Limited,NBB,Commercial Banks,218,216,216,218,-2.0,2010-04-15
-117,13,3300,1464600,Nepal Doorsanchar Comapany Limited,NTC,Others,455,422,455,414,41.0,2010-04-15
-120,5,484,328884,Nepal Investment Bank Limited,NIB,Commercial Banks,693,671,671,680,-9.0,2010-04-15
-123,5,256,175496,Nepal SBI Bank Limited,SBI,Commercial Banks,700,682,682,690,-8.0,2010-04-15
-126,3,629,334950,NIC Asia Bank Ltd.,NICA,Commercial Banks,535,530,530,528,2.0,2010-04-15
-129,1,4180,1672000,Om Finance Ltd.,,,400,400,400,400,,2010-04-15
-132,4,220,38665,Paschimanchal Finance Co. Ltd.,,,178,172,178,220,-42.0,2010-04-15
-135,1,50,12950,Pokhara Finance Ltd.,PFL,Finance,259,259,259,264,-5.0,2010-04-15
-138,1,125,26250,Prabhu  Bank Limited,PRVU,Commercial Banks,210,210,210,213,-3.0,2010-04-15
-141,11,470,199210,Prime Commercial Bank Ltd.,PCBL,Commercial Banks,429,418,418,422,-4.0,2010-04-15
-144,60,1130,180560,Public Development Bank Limited,,,163,157,160,163,-3.0,2010-04-15
-147,5,340,112320,Rastriya Beema Company Limited,RBCL,Non Life Insurance,335,325,325,341,-16.0,2010-04-15
-153,5,300,68250,Sagarmatha  Finance Limited,,,229,226,229,226,3.0,2010-04-15
-156,34,1530,364995,Sahayogi Bikas Bank Limited,SBBLJ,Development Banks,240,232,240,236,4.0,2010-04-15
-159,7,90,27150,Shikhar Insurance Co. Ltd.,SICL,Non Life Insurance,313,288,288,319,-31.0,2010-04-15
-162,1,30,21000,Shree Investment Finance Co. Ltd.,SIFC,Finance,700,700,700,699,1.0,2010-04-15
-165,4,2031,785610,Siddhartha Bank Limited,SBL,Commercial Banks,392,385,392,400,-8.0,2010-04-15
-168,5,1372,266805,Siddhartha Development Bank Ltd.,,,200,190,190,204,-14.0,2010-04-15
-171,9,693,1968110,Standard Chartered Bank Limited,SCB,Commercial Banks,2850,2825,2831,2895,-64.0,2010-04-15
-174,52,2050,592310,Sunrise Bank Limited,SRBL,Commercial Banks,293,285,290,293,-3.0,2010-04-15
-177,3,415,57035,Supreme Development Bank Ltd.,,,139,137,139,137,2.0,2010-04-15
+,numTrans,tradedShares,amount,company.code,company.name,company.cat,price.max,price.min,price.close,price.prevClose,price.diff,2015-04-22
+0,7,619,269707.0,ADBL,Agriculture Development Bank Limited,Commercial Banks,440.0,435.0,440.0,439.0,1.0,2015-04-22
+1,5,542,167508.0,,Alpine Development Bank Limited,,315.0,304.0,310.0,320.0,-10.0,2015-04-22
+2,57,8630,1148445.0,,Apex Development Bank Ltd.,,137.0,131.0,131.0,133.0,-2.0,2015-04-22
+3,17,2309,802506.0,AHPC,Arun Valley Hydropower Development Co. Ltd.,Hydro Power,352.0,342.0,350.0,350.0,,2015-04-22
+4,12,851,996254.0,ALICL,Asian Life Insurance Co. Limited,Life Insurance,1175.0,1160.0,1169.0,1167.0,2.0,2015-04-22
+5,1,100,29100.0,,Bagmati Development Bank Ltd.,,291.0,291.0,291.0,296.0,-5.0,2015-04-22
+6,1,110,29700.0,BHBL,Bhargav Bikash Bank Ltd.,Development Banks,270.0,270.0,270.0,275.0,-5.0,2015-04-22
+7,5,813,259659.0,,Biratlaxmi Bikas Bank Limited,,325.0,319.0,319.0,319.0,,2015-04-22
+8,2,305,62525.0,,Business Universal Development Bank Ltd.,,205.0,205.0,205.0,202.0,3.0,2015-04-22
+9,3,333,201630.0,BPCL,Butwal Power Company Limited,Hydro Power,610.0,600.0,600.0,613.0,-13.0,2015-04-22
+10,4,453,89015.0,CFCL,Central Finance Co. Ltd.,Finance,198.0,196.0,196.0,198.0,-2.0,2015-04-22
+11,31,6607,2043753.0,CCBL,Century Commercial Bank Ltd.,Commercial Banks,310.0,307.0,310.0,315.0,-5.0,2015-04-22
+12,5,423,665907.0,CBBL,Chhimek Laghubitta Bikas Bank Limited,Microfinance,1610.0,1555.0,1555.0,1599.0,-44.0,2015-04-22
+13,41,4079,6519791.0,CHCL,Chilime Hydropower Company Limited,Hydro Power,1611.0,1590.0,1604.0,1605.0,-1.0,2015-04-22
+14,50,9721,4469350.0,CZBIL,Citizen Bank International Limited,Commercial Banks,464.0,446.0,460.0,459.0,1.0,2015-04-22
+15,29,14123,4009338.0,CBL,Civil Bank Ltd,Commercial Banks,292.0,281.0,283.0,290.0,-7.0,2015-04-22
+16,6,264,94359.0,,Cosmos Development Bank Ltd.,,360.0,352.0,360.0,364.0,-4.0,2015-04-22
+17,1,500,616000.0,DDBL,Deprosc Laghubitta Bittiya Sanstha Limited,Microfinance,1232.0,1232.0,1232.0,1214.0,18.0,2015-04-22
+18,21,2404,692205.0,,Ekata Bikas Bank Ltd.,,292.0,285.0,292.0,288.0,4.0,2015-04-22
+19,19,3388,7222285.0,EBLCP,Everest Bank Limited Con. Pref.,Preferred Stock,2140.0,2130.0,2131.0,2121.0,10.0,2015-04-22
+20,1,49,31311.0,FMDBL,First Micro Finance Laghubitta Bittiya Sanstha Limited,Microfinance,639.0,639.0,639.0,652.0,-13.0,2015-04-22
+21,7,2906,930776.0,,Gandaki Bikas BankLimited,,326.0,316.0,320.0,320.0,,2015-04-22
+22,21,7851,2490677.0,GBBL,Garima Bikas Bank Limited,Development Banks,327.0,315.0,323.0,321.0,2.0,2015-04-22
+23,7,1748,805380.0,GBILD86/87,Global IME Bank Limited Debenture 2086/87,Corporate Debenture,464.0,460.0,464.0,460.0,4.0,2015-04-22
+24,10,1879,950321.0,GLICL,Gurans Life Insurance Company Ltd.,Life Insurance,520.0,502.0,520.0,529.0,-9.0,2015-04-22
+25,2,180,28520.0,,Hama Merchant & Finance Ltd.,,160.0,158.0,160.0,161.0,-1.0,2015-04-22
+26,6,737,606232.0,HBL,Himalayan Bank Limited,Commercial Banks,838.0,820.0,838.0,828.0,10.0,2015-04-22
+27,3,150,93950.0,HDL,Himalayan Distillery Limited,Manufacturing And Processing,630.0,625.0,630.0,642.0,-12.0,2015-04-22
+28,7,407,107246.0,ICFC,ICFC Finance Limited,Finance,265.0,262.0,262.0,270.0,-8.0,2015-04-22
+29,8,739,133882.0,,Infrastructure Development Bank Ltd.,,182.0,179.0,179.0,182.0,-3.0,2015-04-22
+30,1,88,35200.0,,Innovative Development Bank Ltd.,,400.0,400.0,400.0,393.0,7.0,2015-04-22
+31,1,100,39700.0,JFL,Janaki Finance Ltd.,Finance,397.0,397.0,397.0,405.0,-8.0,2015-04-22
+32,7,1483,402944.0,JBNL,Janata Bank Nepal Ltd.,Commercial Banks,272.0,269.0,271.0,274.0,-3.0,2015-04-22
+33,4,1070,142310.0,,Jebils Finance Ltd.,,133.0,133.0,133.0,135.0,-2.0,2015-04-22
+34,4,103,17169.0,JBBL,Jyoti Bikas Bank Limited,Development Banks,169.0,164.0,164.0,172.0,-8.0,2015-04-22
+35,1,500,190000.0,,Kailash Bikas Bank Ltd.,,380.0,380.0,380.0,382.0,-2.0,2015-04-22
+36,22,1928,636398.0,KSBBL,Kamana Sewa Bikas Bank Limited,Development Banks,333.0,326.0,330.0,332.0,-2.0,2015-04-22
+37,6,601,131391.0,,Kaski Finance Limited,,224.0,217.0,224.0,220.0,4.0,2015-04-22
+38,13,897,142320.0,,Kasthamandap Development Bank Limited,,160.0,155.0,156.0,159.0,-3.0,2015-04-22
+39,4,218,82968.0,KBL,Kumari Bank Limited,Commercial Banks,382.0,380.0,380.0,384.0,-4.0,2015-04-22
+40,9,1560,824581.0,LBL,Laxmi Bank Limited,Commercial Banks,533.0,524.0,530.0,524.0,6.0,2015-04-22
+41,8,372,316313.0,LLBS,Laxmi Laghubitta Bittiya Sanstha Ltd.,Microfinance,855.0,835.0,852.0,845.0,7.0,2015-04-22
+42,4,313,735237.0,LICN,Life Insurance Co. Nepal,Life Insurance,2349.0,2349.0,2349.0,2350.0,-1.0,2015-04-22
+43,7,2180,747558.0,,Lumbini Bank Limited,,347.0,340.0,347.0,345.0,2.0,2015-04-22
+44,78,6960,1148390.0,LBBL,Lumbini Bikas Bank Ltd.,Development Banks,168.0,160.0,168.0,166.0,2.0,2015-04-22
+45,7,1813,391324.0,,Lumbini Finance Ltd.,,219.0,215.0,219.0,218.0,1.0,2015-04-22
+46,1,26,8996.0,LGIL,Lumbini General Insurance Co. Ltd.,Non Life Insurance,346.0,346.0,346.0,353.0,-7.0,2015-04-22
+47,14,5582,3127618.0,MBL,Machhapuchhre Bank Limited,Commercial Banks,563.0,555.0,561.0,570.0,-9.0,2015-04-22
+48,5,826,173140.0,,Mahakali Bikas Bank Limited,,213.0,209.0,209.0,211.0,-2.0,2015-04-22
+49,18,468,63400.0,MLBL,Mahalaxmi Bikas Bank Ltd.,Development Banks,137.0,134.0,137.0,137.0,,2015-04-22
+50,4,474,106462.0,,Mahalaxmi BikasBank Limited,,225.0,220.0,225.0,223.0,2.0,2015-04-22
+51,1,132,46200.0,,Metro Development Bank Limited,,350.0,350.0,350.0,357.0,-7.0,2015-04-22
+52,4,169,162192.0,MLBBL,Mithila LaghuBitta Bittiya Sanstha Limited,Microfinance,961.0,955.0,960.0,980.0,-20.0,2015-04-22
+53,12,4110,2266783.0,MNBBL,Muktinath Bikas Bank Ltd.,Development Banks,565.0,545.0,565.0,565.0,,2015-04-22
+54,12,85114,24257490.0,,Muktinath Bikas Bank Ltd. Promoter Share,,285.0,285.0,285.0,285.0,,2015-04-22
+55,5,18684,248682.54,,Nabil Balance Fund 1,,13.35,13.28,13.35,13.3,0.05,2015-04-22
+56,9,2300,4342263.0,NABIL,Nabil Bank Limited,Commercial Banks,1916.0,1880.0,1900.0,1930.0,-30.0,2015-04-22
+57,15,4824,6405916.0,,NABIL Bank Limited Promotor Share,,1333.0,1325.0,1325.0,1330.0,-5.0,2015-04-22
+58,2,85,161100.0,,NagBeli LaghuBitta Bikas Bank Ltd.,,1900.0,1880.0,1900.0,1905.0,-5.0,2015-04-22
+59,3,1460,395011.0,,Narayani National Finance Limited,,273.0,268.0,273.0,266.0,7.0,2015-04-22
+60,13,10820,1323440.0,NHPC,National Hydro Power Company Limited,Hydro Power,127.0,121.0,122.0,125.0,-3.0,2015-04-22
+61,47,6861,14860502.0,NLICL,National Life Insurance Co. Ltd.,Life Insurance,2190.0,2150.0,2150.0,2152.0,-2.0,2015-04-22
+62,2,70,65900.0,NSLB,Naya Sarathi Laghubitta Bittiya Sanstha Limited,Microfinance,944.0,926.0,944.0,931.0,13.0,2015-04-22
+63,1,10,6280.0,NIL,Neco Insurance Co. Ltd.,Non Life Insurance,628.0,628.0,628.0,616.0,12.0,2015-04-22
+64,69,23512,11682649.0,NBB,Nepal Bangladesh Bank Limited,Commercial Banks,508.0,490.0,490.0,510.0,-20.0,2015-04-22
+65,8,3832,1135854.0,NBL,Nepal Bank Limited,Commercial Banks,300.0,295.0,300.0,295.0,5.0,2015-04-22
+66,11,4056,2295624.0,NCCB,Nepal Credit And Commercial Bank Limited,Commercial Banks,574.0,564.0,574.0,575.0,-1.0,2015-04-22
+67,8,2030,1219840.0,NTC,Nepal Doorsanchar Comapany Limited,Others,610.0,598.0,610.0,600.0,10.0,2015-04-22
+68,6,2160,1551859.0,NIB,Nepal Investment Bank Limited,Commercial Banks,725.0,715.0,723.0,722.0,1.0,2015-04-22
+69,1,2128,1059744.0,,Nepal Investment Bank Ltd. Promoter Share,,498.0,498.0,498.0,495.0,3.0,2015-04-22
+70,32,2289,9693914.0,NLIC,Nepal Life Insurance Co. Ltd.,Life Insurance,4280.0,4180.0,4190.0,4240.0,-50.0,2015-04-22
+71,9,1731,1540719.0,SBI,Nepal SBI Bank Limited,Commercial Banks,896.0,886.0,890.0,900.0,-10.0,2015-04-22
+72,2,330,396000.0,NLBBL,Nerude Laghubita Bikas Bank Limited,Microfinance,1200.0,1200.0,1200.0,1224.0,-24.0,2015-04-22
+73,5,49378,493780.0,NIBSF1,NIBL Samriddhi Fund 1,Mutual Fund,10.0,10.0,10.0,9.9,0.1,2015-04-22
+74,16,3088,2001432.0,NICA,NIC Asia Bank Ltd.,Commercial Banks,660.0,645.0,645.0,658.0,-13.0,2015-04-22
+75,3,261,53483.0,,NIDC Capital Markets Ltd.,,207.0,203.0,203.0,206.0,-3.0,2015-04-22
+76,14,5996,1617404.0,,Nilgiri Bikas Bank Limited,,274.0,266.0,268.0,275.0,-7.0,2015-04-22
+77,3,377,451990.0,NUBL,Nirdhan Utthan Laghubitta Bittiya Sanstha Limited,Microfinance,1206.0,1196.0,1196.0,1206.0,-10.0,2015-04-22
+78,4,75,47190.0,NLG,NLG Insurance Company Ltd.,Non Life Insurance,632.0,626.0,632.0,635.0,-3.0,2015-04-22
+79,1,2000,20000.0,,NMB Sulav Investment Fund-1,,10.0,10.0,10.0,10.1,-0.1,2015-04-22
+80,15,1718,570123.0,ODBL,Om Development Bank Ltd.,Development Banks,338.0,330.0,338.0,335.0,3.0,2015-04-22
+81,14,4734,1446540.0,,Om Finance Ltd.,,311.0,301.0,305.0,305.0,,2015-04-22
+82,1,300,215700.0,OHL,Oriental Hotels Limited,Hotels,719.0,719.0,719.0,725.0,-6.0,2015-04-22
+83,77,10275,3591752.0,PRVU,Prabhu  Bank Limited,Commercial Banks,356.0,346.0,352.0,350.0,2.0,2015-04-22
+84,4,363,194477.0,PIC,Premier Insurance Co. Ltd.,Non Life Insurance,540.0,535.0,540.0,530.0,10.0,2015-04-22
+85,16,2363,1043573.0,PCBL,Prime Commercial Bank Ltd.,Commercial Banks,445.0,438.0,444.0,445.0,-1.0,2015-04-22
+86,6,1107,1195187.0,PLIC,Prime Life Insurance Company Limited,Life Insurance,1081.0,1070.0,1070.0,1080.0,-10.0,2015-04-22
+87,8,430,73690.0,,Professional Diyalo Bikas Bank Ltd.,,175.0,166.0,175.0,169.0,6.0,2015-04-22
+88,2,769,313843.0,PICL,Prudential Insurance Co. Ltd.,Non Life Insurance,415.0,408.0,408.0,423.0,-15.0,2015-04-22
+89,2,110,34298.0,,Purnima Bikas Bank Ltd.,,316.0,310.0,316.0,316.0,,2015-04-22
+90,3,193,41578.0,,Reliable Development Bank Limited,,218.0,214.0,218.0,222.0,-4.0,2015-04-22
+91,3,31,13758.0,RHPC,Ridi Hydropower Development Company Ltd.,Hydro Power,448.0,440.0,443.0,443.0,,2015-04-22
+92,3,307,210013.0,RMDC,RMDC Laghubitta Bittiya Sanstha Ltd.,Microfinance,685.0,676.0,685.0,680.0,5.0,2015-04-22
+93,3,117,122435.0,SIC,Sagarmatha Insurance Co. Ltd.,Non Life Insurance,1060.0,1040.0,1060.0,1050.0,10.0,2015-04-22
+94,3,192,232192.0,SHBL,Sahara Bikas Bank Ltd.,Development Banks,1225.0,1201.0,1225.0,1200.0,25.0,2015-04-22
+95,2,466,680056.0,SKBBL,Sana Kisan Bikas Bank Ltd,Microfinance,1460.0,1452.0,1460.0,1466.0,-6.0,2015-04-22
+96,22,8651,4818612.0,SANIMA,Sanima Bank Limited,Commercial Banks,562.0,555.0,560.0,560.0,,2015-04-22
+97,7,180,130240.0,SHPC,Sanima Mai Hydropower Ltd.,Hydro Power,730.0,722.0,730.0,720.0,10.0,2015-04-22
+98,1,100,32500.0,SADBL,Shangrila Development Bank Ltd.,Development Banks,325.0,325.0,325.0,319.0,6.0,2015-04-22
+99,20,1748,617620.0,SHINE,Shine Resunga Development Bank Ltd.,Development Banks,359.0,352.0,354.0,360.0,-6.0,2015-04-22
+100,3,1607,230499.0,,Siddharth Finance Ltd.,,145.0,143.0,143.0,143.0,,2015-04-22
+101,12,2981,2062966.0,SBL,Siddhartha Bank Limited,Commercial Banks,695.0,690.0,691.0,700.0,-9.0,2015-04-22
+102,2,300,63150.0,,Siddhartha Development Bank Ltd.,,211.0,208.0,208.0,215.0,-7.0,2015-04-22
+103,2,15000,233250.0,,Siddhartha Investment Growth Scheme-1,,15.55,15.55,15.55,15.44,0.11,2015-04-22
+104,13,11633,5093521.0,SHL,Soaltee Hotel Limited,Hotels,444.0,437.0,437.0,445.0,-8.0,2015-04-22
+105,11,6470,761460.0,,Society Development Bank Ltd.,,119.0,116.0,118.0,117.0,1.0,2015-04-22
+106,8,1082,2130496.0,SCB,Standard Chartered Bank Limited,Commercial Banks,1975.0,1965.0,1969.0,1999.0,-30.0,2015-04-22
+107,1,66,19470.0,,Subhechha Bikas Bank Limited,,295.0,295.0,295.0,291.0,4.0,2015-04-22
+108,2,271,414458.0,SMFDB,Summit Laghubitta Bittiya Sanstha Limited,Microfinance,1530.0,1528.0,1530.0,1559.0,-29.0,2015-04-22
+109,39,16172,6668680.0,SRBL,Sunrise Bank Limited,Commercial Banks,421.0,401.0,401.0,416.0,-15.0,2015-04-22
+110,9,2454,387536.0,,Supreme Development Bank Ltd.,,159.0,157.0,157.0,161.0,-4.0,2015-04-22
+111,4,975,571955.0,SLICL,Surya Life Insurance Company Limited,Life Insurance,592.0,580.0,592.0,600.0,-8.0,2015-04-22
+112,7,392,630227.0,SWBBL,Swabalamban Laghubitta Bittiya Sanstha Limited,Microfinance,1640.0,1600.0,1608.0,1600.0,8.0,2015-04-22
+113,6,3437,341138.0,SYFL,Synergy Finance Ltd.,Finance,102.0,98.0,98.0,103.0,-5.0,2015-04-22
+114,6,743,217929.0,,Tinau Development Bank Limited,,295.0,291.0,295.0,297.0,-2.0,2015-04-22
+115,13,10145,2503200.0,,Tourism Development Bank Limited,,253.0,240.0,243.0,250.0,-7.0,2015-04-22
+116,7,349,51769.0,,Unique Finance Ltd.,,151.0,147.0,149.0,151.0,-2.0,2015-04-22
+117,2,192,44436.0,UFL,United Finance Ltd.,Finance,234.0,230.0,234.0,230.0,4.0,2015-04-22
+118,14,397,126672.0,,Western Development Bank Limited,,325.0,315.0,316.0,330.0,-14.0,2015-04-22

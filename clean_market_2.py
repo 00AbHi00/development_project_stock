@@ -3,8 +3,9 @@ import json
 import datetime as dt
 import re
 
+#loop from 2010-04-15 to 2025-03-10 and save the count of unique shares to the file
 try:
-    date= "date\\" + str(dt.date(2010,4,15)) +'.json'
+    date= "date\\" + str(dt.date(2015,4,22)) +'.json'
     print(date)
     with open(date,mode='r') as f:
         data=json.load(f)
@@ -20,7 +21,10 @@ try:
             date=clean_date  # Output: 2010-04-15
             
         df[date]=date
-        df.reindex()
+        df.reset_index(inplace=True)
+        df.drop(axis=1, inplace=True,columns=['index'])
+        
+        print(df)
         df.to_csv('path.csv')
         
 except FileNotFoundError:
