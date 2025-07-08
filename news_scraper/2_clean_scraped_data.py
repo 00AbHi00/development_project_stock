@@ -1,16 +1,17 @@
 # Out put of this file is 
 
 #  {
-#     "newsid[page1]_[count]": {
+#     "newsid1": {
 #       "image": "https://english.onlinekhabar.com/wp-content/uploads/2025/07/Sunchadi-Byabasayi-Aandolan-9.jpg",
 #       "title": "Gold and silver traders stage protest against luxury tax and VAT",
 #       "link": "https://english.onlinekhabar.com/gold-and-silver-traders-stage-protest-against-luxury-tax-and-vat.html"
 #  }, #  {
-#     "newsid[page1]_[count]": {
+#     "newsid2: {
 #       "image": "https://english.onlinekhabar.com/wp-content/uploads/2025/07/Sunchadi-Byabasayi-Aandolan-9.jpg",
 #       "title": "Gold and silver traders stage protest against luxury tax and VAT",
 #       "link": "https://english.onlinekhabar.com/gold-and-silver-traders-stage-protest-against-luxury-tax-and-vat.html"
-#  }, 
+#  }
+# }...
 
 import json
 # Load your existing JSON file

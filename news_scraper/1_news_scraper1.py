@@ -5,15 +5,17 @@
 #       "title": "Gold and silver traders stage protest against luxury tax and VAT",
 #       "link": "https://english.onlinekhabar.com/gold-and-silver-traders-stage-protest-against-luxury-tax-and-vat.html"
 #  }, 
+
+#processing time: Around 10-15 minutes
+
 import requests
 from bs4 import BeautifulSoup
 import json
 import os
 
 
-
+#Since there are 164 pages in onlinekhabar
 pageId=1
-# Define target URL
 while pageId<164:
     url = f"https://english.onlinekhabar.com/category/economy/page/{pageId}"
 
@@ -68,7 +70,7 @@ while pageId<164:
     else:
         data = []
 
-    # Append new data (assuming news_data is a dict or list)
+    # Append new data 
     data.append(news_data)  # or data.extend(news_data) if news_data is a list
 
     # Write back full JSON list
