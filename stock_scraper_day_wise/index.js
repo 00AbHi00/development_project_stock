@@ -24,7 +24,6 @@ const { setTimeout } = require('node:timers/promises');
 
   // Wait for the "Download as CSV" button to appear
   await page.waitForSelector('div.download-csv a.table__file');
-
   await page.click('div.download-csv a.table__file');
 
 
