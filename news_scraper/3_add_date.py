@@ -4,6 +4,7 @@ from datetime import datetime
 import json
 import time
 
+# Open the file containing files, contents, etc
 with open('news_scraper/newsarticle_v2.json', mode='r', encoding='utf-8') as file:
     raw_data = json.load(file)
 
@@ -70,4 +71,6 @@ if chunk:
         json.dump(chunk, f, indent=2, ensure_ascii=False)
     print(f" Saved final chunk: {filename}")
 
+
+# Saving all entries in chunks 
 print(" All entries processed and saved in chunks.")

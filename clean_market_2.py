@@ -13,7 +13,7 @@ try:
         # print(preety_data)
         
         df=pd.json_normalize(data['data'])
-        df.drop_duplicates(subset=['company.name','company.code'],inplace=True)
+        df.drop_duplicates(subset=['company.name','company.code','company.cat'],inplace=True)
         # Extract the date using regex
         date_match = re.search(r'\d{4}-\d{2}-\d{2}', date)
         if date_match:
@@ -25,7 +25,7 @@ try:
         df.drop(axis=1, inplace=True,columns=['index'])
         
         print(df)
-        df.to_csv('path.csv')
+        df.to_csv('clean_outputs/output1.csv')
         
 except FileNotFoundError:
     print('Today is a holiday')
