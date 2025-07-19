@@ -16,7 +16,7 @@ for i in x:
 
 result_df = pd.DataFrame(all_rows, columns=['company.code', 'company.name', 'company.cat'])
 
-result_df.to_csv('clean_outputs/output3_uniquedataset.csv')
+# result_df.to_csv('clean_outputs/output3_uniquedataset.csv')
 print(result_df.groupby(['company.cat']).nunique())
 print(result_df.count())
 
