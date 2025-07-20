@@ -3,4 +3,4 @@ date/
 stock_scraper_day_wise/node_modules
 scraper/
 
-news_scraper/*.json
+news_scraper/*/*.json

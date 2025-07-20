@@ -5,7 +5,7 @@ import json
 import time
 
 # Open the file containing files, contents, etc
-with open('news_scraper/newsarticle_v2.json', mode='r', encoding='utf-8') as file:
+with open('news_scraper/economic/newsarticle_v2.json', mode='r', encoding='utf-8') as file:
     raw_data = json.load(file)
 
 start_processing = False
@@ -66,7 +66,7 @@ for newsid, details in raw_data.items():
 
 # Save any remaining entries
 if chunk:
-    filename = f'news_scraper/file{file_index}.json'
+    filename = f'news_scraper/economic/file{file_index}.json'
     with open(filename, mode='w', encoding='utf-8') as f:
         json.dump(chunk, f, indent=2, ensure_ascii=False)
     print(f" Saved final chunk: {filename}")

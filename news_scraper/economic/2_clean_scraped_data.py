@@ -15,7 +15,7 @@
 
 import json
 # Load your existing JSON file
-with open('news_scraper/newsarticle_v1.json', 'r', encoding='utf-8') as f:
+with open('news_scraper/economic/newsarticle_v1.json', 'r', encoding='utf-8') as f:
     raw_data = json.load(f)
 
 # Flatten and clean entries
@@ -35,7 +35,7 @@ for item in raw_data:
         count += 1
 
 # Save cleaned and serial JSON
-with open('news_scraper/cleaned_json_file.json', 'w', encoding='utf-8') as f:
+with open('news_scraper/economic/cleaned_json_file.json', 'w', encoding='utf-8') as f:
     json.dump(cleaned_data, f, indent=2, ensure_ascii=False)
 
 print("Cleaned and renumbered JSON saved as 'cleaned_json_file.json'")

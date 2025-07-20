@@ -1,7 +1,6 @@
 import json
 import os
 import datetime
-import csv
 
 #Cleaning the dataset required for simulation: This is only run once:
 wk_days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
