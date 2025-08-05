@@ -64,7 +64,7 @@ for newsid, details in raw_data.items():
         print(f"Error processing {newsid}: {e}")
         continue
 
-# Save any remaining entries
+# All remaining codes
 if chunk:
     filename = f'news_scraper/economic/file{file_index}.json'
     with open(filename, mode='w', encoding='utf-8') as f:
