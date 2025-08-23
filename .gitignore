@@ -4,3 +4,6 @@ stock_scraper_day_wise/node_modules
 scraper/
 
 news_scraper/*/*.json
+
+/0_workingfile/process/*.csv
+/0_workingfile/*.csv
