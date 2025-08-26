@@ -24,14 +24,23 @@ st.html("""
 """)
 
 
-begin_date = st.date_input("Enter Begin Date", value=dt.date(2010, 4, 15))
+begin_date = st.date_input("Enter First Appear Date", value=dt.date(2010, 4, 15))
 end_date = st.date_input("Enter End Date", value=dt.date(2025,7,7))
 
+ActiveMode= st.selectbox("Select mode:", options=["All Shares","Active","Not active"])
 
-df=pd.read_csv('clean1_enriched.csv')
 
-#add and give a single line code which takes begin date and end date and filters dataframe acc, do i need to worry like react?
-# df=df['']
+# Load data
+df = pd.read_csv('clean1_enriched.csv', parse_dates=['first_appear_date'])
+
+
+df = df[(df['first_appear_date'] >= pd.to_datetime(begin_date)) 
+        & (df['first_appear_date'] <= pd.to_datetime(end_date))
+        ]
+
+if ActiveMode!="All Shares":
+    check_val = True if ActiveMode == "Active" else False if ActiveMode == "Not active" else None
+    df = df[df['is_active'] == check_val]
 
 #List of All the companies with their head
 st.header("List of all the companies")

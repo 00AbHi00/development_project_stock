@@ -7,3 +7,5 @@ news_scraper/*/*.json
 
 /0_workingfile/process/*.csv
 /0_workingfile/*.csv
+
+1_automation/node_modules/*
