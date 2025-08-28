@@ -15,19 +15,27 @@ const TodaysDate= new Date()
 abh_map=[new Date(),5000]
 
 
+function addOneDay(date) {
+  const newDate = new Date(date);
+  newDate.setDate(newDate.getDate() + 1);
+  return newDate;
+}
+
+
 
 function extractDateParts(date) {
     return (`${date.getFullYear()},${date.getMonth() + 1},${date.getDate()}`)
 }
 
 function getLastDate(list){
+    // Month starts form 0
     tempDate=new Date(list[0],list[1]-1,list[2])
     differenceInDateInDays= (Math.round((TodaysDate-tempDate)/ (1000 * 60 * 60 * 24)))
     // console.log(differenceInDateInDays,"<",abh_map[1])
 
     if(differenceInDateInDays<abh_map[1])
     {
-        abh_map[0]=tempDate
+        abh_map[0]=tempDate 
         abh_map[1]=differenceInDateInDays
     }
 }
@@ -49,14 +57,18 @@ async function processFiles() {
         }
         // Date to fetch from is the date value + 1
 
-        console.log("Final abh_map:", abh_map);
+        // console.log("Final abh_map:", abh_map);
         // Return at last
         console.log(extractDateParts(abh_map[0]),extractDateParts(TodaysDate))
-        
+
+        console.log(abh_map[0])
+
+
         if (extractDateParts(abh_map[0])==extractDateParts(TodaysDate)){
             console.log('Already upto Date')
             process.exit()
         }
+
 
         return abh_map
 
