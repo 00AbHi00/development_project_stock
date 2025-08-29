@@ -1,0 +1,9 @@
+days=[
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thrusday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+]

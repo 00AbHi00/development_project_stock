@@ -59,5 +59,6 @@ def check_if_news():
             
             if(differenceOfDates(get_current_date(),approva_date,100)):
                 st.write('New news of merger')
-                st.write(row)         
+                # st.write(row)         
                 return True
+            
