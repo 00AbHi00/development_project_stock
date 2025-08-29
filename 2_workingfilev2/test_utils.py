@@ -13,4 +13,4 @@ def test_differenceOfDates():
     # the day has passed
     assert differenceOfDates(dt.date(2020,1,31),dt.date(2020,1,30),1 )== False, "Test 3 fail"
 
-    
+    assert differenceOfDates(dt.date(2020,1,31),dt.date(2020,1,31),0 )== True, "Test 4 fail"

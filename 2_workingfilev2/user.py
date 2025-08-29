@@ -4,8 +4,7 @@ import os
 import streamlit as st
 import utils 
 class User:
-    st.write(utils.get_current_date())
- 
+    date= utils.get_current_date()
     def __init__(self, name):
         self.name = name  # Instance attribute
         self.__portfolio={}
