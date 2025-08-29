@@ -1,5 +1,6 @@
 import os
 import datetime as dt
+import csv
 
 DATE_FILE = "currentDate.txt"
 _last_loaded_date = None
@@ -34,3 +35,15 @@ def addDays(days=1):
     new_date = current_date + dt.timedelta(days=days)
     with open('currentDate.txt','w') as f:
         f.write(new_date.strftime('%Y-%m-%d'))  
+        
+        
+def check_if_news():
+    # Whenever the day is changed, this function should be triggered
+    with open('merged_data_normalized_final.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            approva_date=convertToDate(row["Final Approval Date"])    
+            # st.write(row['Sno'])
+            # st.write(approva_date) 
+            if(differenceOfDates(get_current_date(),approva_date,10)):
+                return True
