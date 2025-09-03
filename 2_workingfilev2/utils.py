@@ -4,8 +4,7 @@ import csv
 import streamlit as st
 import pandas as pd
 
-DATE_FILE = "currentDate.txt"
-_last_loaded_date = None
+DATE_FILE = "data/currentDate.txt"
 
 def convertToDate(dateString:str):
     tmpDate=dateString.split('-')
@@ -28,20 +27,20 @@ def differenceOfDates(fromDate, toDate, durationInDays=10):
     return False
 
 def get_current_date():
-    with open('currentDate.txt','r') as f:
+    with open('data\\currentDate.txt','r') as f:
         return convertToDate(f.read())
 
 
 def addDays(days=1):
     current_date = get_current_date()
     new_date = current_date + dt.timedelta(days=days)
-    with open('currentDate.txt','w') as f:
+    with open('data\\currentDate.txt','w') as f:
         f.write(new_date.strftime('%Y-%m-%d'))  
         
         
 def check_if_news():
     # Whenever the day is changed, this function should be triggered
-    with open('merged_data_normalized_final.csv', newline='') as csvfile:
+    with open('data\\merged_data_normalized_final.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         current_date=get_current_date()
         for row in reader:

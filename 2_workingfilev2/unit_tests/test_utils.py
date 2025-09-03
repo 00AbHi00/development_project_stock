@@ -1,7 +1,12 @@
 #Unit test file for utils
-import pytest as pt
+# Run this
+# PS C:\CSIT\Abhi Semester 7\project\0 Program\2_workingfilev2> pytest unit_tests/test_utils.py
+import sys
+import os
 from utils import convertToDate, differenceOfDates
 import datetime as dt
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 def test_convertToDate():
     assert convertToDate('2012-01-01')==dt.date(2012,1,1)

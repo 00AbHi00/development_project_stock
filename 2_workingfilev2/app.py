@@ -9,7 +9,7 @@ import constants as const
 
 @st.cache_data(show_spinner=False)
 def load_data():
-    return pd.read_csv('output4_fullFinal.csv')
+    return pd.read_csv('data/output4_fullFinal.csv')
 df = load_data()
 
 u1=U.User("Abhishek Silwal")
@@ -20,7 +20,10 @@ date=utils.get_current_date()
 st.write(date)
 st.write(const.days[date.weekday()])
 
-
+if(const.days==6 or const.days==7):
+    st.write("Holiday today")
+    st.write("See past week best shares")
+    
 #2012-3-12 Nepal Bangladesh Bank and Nepal Sri-Lanka Bank 
 
 
@@ -31,9 +34,11 @@ if (st.button("Click me")):
 
 # Let user filter
 filtered_df = df[df['date'].apply(utils.convertToDate) == date]
+st.write(f'Total Capitalization: {filtered_df["amount"].sum()}')
+
 st.dataframe(filtered_df)
 
-
+# st.write(f'Total market Capitalization {filtered_df['amount']}')
 # st.dataframe(df[df['date']==utils.get_current_date()])
 
 # selected_sector = st.selectbox("Select Sector", sorted(df['company.cat'].dropna().unique()))
