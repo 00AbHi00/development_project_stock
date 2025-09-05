@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    a {
+      display: block;
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+      transition: background 0.3s;
+    }
+    .login { background: #3498db; }
+    .login:hover { background: #2980b9; }
+    .register { background: #2ecc71; }
+    .register:hover { background: #27ae60; }
+    .watchlist { background: #9b59b6; }
+    .watchlist:hover { background: #8e44ad; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1> Stock Watchlist</h1>
+    <a href="/login" class="login">Login</a>
+    <a href="/register" class="register">Create Account</a>
+    <a href="/api/watchlist" class="watchlist">Go to Watchlist</a>
+  </div>
+</body>
+</html>

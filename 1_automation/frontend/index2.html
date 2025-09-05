@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Watchlist Manager</title>
+    <style>
+      form input {
+        margin: 5px;
+        padding: 6px;
+      }
+      form button {
+        padding: 6px 12px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      form button:hover {
+        background-color: #27ae60;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        background-color: #f9f9f9;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+      }
+      th,
+      td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+      th {
+        background: #333;
+        color: white;
+      }
+      button {
+        padding: 6px 10px;
+        margin: 2px;
+        border: none;
+        cursor: pointer;
+      }
+      .delete {
+        background: #e74c3c;
+        color: white;
+      }
+      .edit {
+        background: #3498db;
+        color: white;
+      }
+      .save {
+        background: #2ecc71;
+        color: white;
+      }
+      input[type="text"],
+      input[type="number"] {
+        width: 90%;
+      }
+      .row {
+        margin: 20px;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: #27ae5f31;
+        display: flex;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 20px;
+        font-family: Arial, sans-serif;
+      "
+    >
+      <!-- Left side: Watchlist title -->
+      <h2 style="margin: 0">Watchlist</h2>
+
+      <!-- Right side: User details and avatar -->
+      <div
+        style="
+          background-color: #dcede3;
+          padding: 10px;
+          display: flex;
+          justify-content: end;
+          align-items: end;
+          gap: 15px;
+        "
+      >
+        <!-- User avatar (circle) -->
+        <div
+          style="
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+          "
+        >
+          U
+        </div>
+
+        <!-- User information -->
+        <div>
+          <h3 style="margin: 0">Name: <span id="name_user"> </span></h3>
+          <h3 style="margin: 0">Email: <span id="email_user"> </span></h3>
+        </div>
+      </div>
+      <button
+        onclick="logout()"
+        style="padding: 5px; border-radius: 20px; background-color: red"
+        onmouseleave="this.style.backgroundColor='red'"
+        onmouseover="this.style.backgroundColor='lightblue';"
+      >
+        Logout
+      </button>
+    </div>
+    <div class="row">
+      <h3>Add New Stock</h3>
+      <button
+        popovertargetaction="show"
+        popovertarget="createForm"
+        style="background-color: #2ecc71"
+      >
+        Create
+      </button>
+    </div>
+
+    <form style="background-color: #d8bc92" popover="auto" id="createForm">
+      <!-- <input type="text" name="id" placeholder="ID" required /> -->
+      <div class="row">
+        <span>Stock symbol name</span>
+        <select
+          required
+          name="stock_symbol_name"
+          id="stock_symbol_name"
+        ></select>
+      </div>
+
+      <div class="row">
+        <span>Per Unit cost</span>
+
+        <input
+          type="number"
+          step="0.01"
+          name="per_unit_cost"
+          placeholder="Per Unit Cost"
+          required
+        />
+      </div>
+      <div class="row">
+        <span>Total Units</span>
+
+        <input type="number" name="units" placeholder="Units" required />
+      </div>
+      <div class="row">
+        <span>Alert per unit price</span>
+        <input
+          type="number"
+          step="0.01"
+          name="alert_unit_price"
+          placeholder="Alert Price unit"
+          required
+        />
+      </div>
+      <button type="submit">Add</button>
+      <button
+        type="button"
+        onclick="document.getElementById('createForm').reset()"
+      >
+        Clear
+      </button>
+    </form>
+    <br />
+
+    <table id="watchlistTable">
+      <thead>
+        <tr>
+          <th>WID</th>
+          <th>ID</th>
+          <th>Symbol</th>
+          <th>Per Unit Cost</th>
+          <th>Units</th>
+          <th>Alert Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script type="module" src="main.js"></script>
+
+    <script>
+      async function logout() {
+        try {
+          const res = await fetch("/api/watchlist/logout", { method: "POST" });
+          if (res.ok) {
+            window.location.href = "/login";
+          } else {
+            alert("Logout failed");
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Logout failed");
+        }
+      }
+
+      async function loadWatchlist() {
+        const res = await fetch("/api/watchlist/all");
+        const data = await res.json();
+        const tbody = document.querySelector("#watchlistTable tbody");
+        tbody.innerHTML = "";
+
+        data.forEach((row) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${row.wid}</td>
+            <td>${row.id}</td>
+            <td><input readonly type="text" value="${row.stock_symbol_name}" /></td>
+            <td><input  type="number" value="${row.per_unit_cost}" /></td>
+            <td><input  type="number" value="${row.units}" /></td>
+            <td><input type="number" value="${row.alert_unit_price}" /></td>
+            <td>
+                <button class="save" onclick="updateRow(${row.wid}, this)">Save</button>
+                <button class="delete" onclick="deleteRow(${row.wid})">Delete</button>
+            </td>
+        `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      async function deleteRow(wid) {
+        if (confirm(`Are you sure you want to delete WID ${wid}?`)) {
+          await fetch(`/api/watchlist/${wid}`, { method: "DELETE" });
+          loadWatchlist();
+        }
+      }
+      async function loadUserInfo() {
+        try {
+          const res = await fetch("/api/watchlist/me"); // or /api/user/me if you use a separate router
+          if (!res.ok) throw new Error("Failed to fetch user info");
+
+          const user = await res.json();
+          document.getElementById("name_user").textContent = user.name;
+          document.getElementById("email_user").textContent = user.email;
+        } catch (err) {
+          console.error(err);
+          document.getElementById("name_user").textContent = "Unknown";
+          document.getElementById("email_user").textContent = "Unknown";
+        }
+      }
+
+      async function updateRow(wid, btn) {
+        const row = btn.closest("tr");
+        const inputs = row.querySelectorAll("input");
+        const [id, symbol, cost, units, alert] = Array.from(inputs).map(
+          (input) => input.value
+        );
+
+        await fetch(`/api/watchlist/${wid}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id,
+            stock_symbol_name: symbol,
+            per_unit_cost: parseFloat(cost),
+            units: parseInt(units),
+            alert_unit_price: parseFloat(alert),
+          }),
+        });
+        loadWatchlist();
+      }
+
+      document
+        .getElementById("createForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const form = e.target;
+
+          const newStock = {
+            stock_symbol_name: form.stock_symbol_name.value,
+            per_unit_cost: parseFloat(form.per_unit_cost.value),
+            units: parseInt(form.units.value),
+            alert_unit_price: parseFloat(form.alert_unit_price.value),
+          };
+
+          await fetch("/api/watchlist", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newStock),
+          });
+
+          form.reset(); // Clear form
+          loadWatchlist(); // Refresh table
+        });
+
+      const select = document.getElementById("stock_symbol_name");
+
+      const listofCompanies = [
+        "Nabil Bank Limited",
+        "Nepal Investment Mega Bank Limited",
+        "Standard Chartered Bank Limited",
+        "Himalayan Bank Limited",
+        "Nepal SBI Bank Limited",
+        "Everest Bank Limited",
+        "NIC Asia Bank Ltd.",
+        "Machhapuchhre Bank Limited",
+        "Laxmi Sunrise Bank Limited",
+        "Kumari Bank Limited",
+        "Siddhartha Bank Limited",
+        "Soaltee Hotel Limited",
+        "Taragaon Regency Hotel Limited",
+        "Oriental Hotels Limited",
+        "National Hydro Power Company Limited",
+        "Butwal Power Company Limited",
+        "Chilime Hydropower Company Limited",
+        "Salt Trading Corporation",
+        "Bishal Bazar Company Limited",
+        "Nirdhan Utthan Laghubitta Bittiya Sanstha Limited",
+        "Chhimek Laghubitta Bittiya Sanstha Limited",
+        "Deprosc Laghubitta Bittiya Sanstha Limited",
+        "Sanima Bank Limited",
+        "Narayani Development Bank Limited",
+        "Nepal Insurance Co. Ltd.",
+        "Rastriya Beema Company Limited",
+        "National Life Insurance Co. Ltd.",
+        "Himalayan Everest Insurance Limited",
+        "United Ajod Insurance Limited",
+        "Siddhartha Premier Insurance Limited",
+        "Neco Insurance Limited",
+        "Prabhu Insurance Ltd.",
+        "Sagarmatha Lumbini Insurance Co. Limited",
+        "IGI Prudential insurance Limited",
+        "Nepal Life Insurance Co. Ltd.",
+        "Life Insurance Corporation (Nepal) Limited",
+        "Shikhar Insurance Co. Ltd.",
+        "Nepal Finance Ltd.",
+        "Bottlers Nepal (Balaju) Limited",
+        "Gurkhas Finance Ltd.",
+        "Citizen Investment Trust",
+        "Bottlers Nepal (Terai) Limited",
+        "Unilever Nepal Limited",
+        "Best Finance Company Ltd.",
+        "Goodwill Finance Limited",
+        "Himalayan Distillery Limited",
+        "Pokhara Finance Ltd.",
+        "NMB Bank Limited",
+        "Shree Investment Finance Co. Ltd.",
+        "Central Finance Co. Ltd.",
+        "Janaki Finance Company Limited",
+        "Prabhu  Bank Limited",
+        "Samriddhi Finance Company Limited",
+        "Guheshowori Merchant Bank & Finance Co. Ltd.",
+        "Swabalamban Laghubitta Bittiya Sanstha Limited",
+        "ICFC Finance Limited",
+        "Excel Development Bank Ltd.",
+        "Nepal Doorsanchar Company Limited",
+        "Progressive Finance Limited",
+        "Global IME Bank Limited",
+        "Citizens Bank International Limited",
+        "Prime Commercial Bank Ltd.",
+        "Lumbini Bikas Bank Ltd.",
+        "Arun Valley Hydropower Development Co. Ltd.",
+        "Miteri Development Bank Limited",
+        "Asian Life Insurance Co. Limited",
+        "Himalayan Life Insurance Limited",
+        "Nerude Mirmire Laghubitta Bittiya Sanstha Limited",
+        "Agricultural Development Bank Limited",
+        "Mahalaxmi Bikas Bank Ltd.",
+        "SuryaJyoti Life Insurance Company Limited",
+        "Garima Bikas Bank Limited",
+        "Jyoti Bikas Bank Limited",
+        "Corporate Development Bank Limited",
+        "Kamana Sewa Bikas Bank Limited",
+        "Nepal Investment Mega Bank Ltd. Promoter Share",
+        "Multipurpose Finance Company  Limited",
+        "Shangrila Development Bank Ltd.",
+        "Shine Resunga Development Bank Ltd.",
+        "Muktinath Bikas Bank Ltd.",
+        "First Micro Finance Laghubitta Bittiya Sanstha Limited",
+        "Global IME Bank Ltd. Promoter Share",
+        "Manjushree Finance Ltd.",
+        "Nepal Bank Limited",
+        "Swarojgar Laghubitta Bittiya Sanstha Ltd.",
+        "NLG Insurance Company Ltd.",
+        "Sindhu Bikash Bank Ltd",
+        "Sana Kisan Bikas Laghubitta Bittiya Sanstha Limited",
+        "Grameen Bikas Laghubitta Bittiya Sanstha Ltd.",
+        "Reliance Finance Ltd.",
+        "Sanima Mai Hydropower Ltd.",
+        "Kalika Laghubitta Bittiya Sanstha Ltd",
+        "Mithila LaghuBitta Bittiya Sanstha Limited",
+        "Ridi Power Company Limited",
+        "Laxmi Laghubitta Bittiya Sanstha Ltd.",
+        "Rastriya Beema Company Limited Promoter Share",
+        "Barun Hydropower Co. Ltd.",
+        "Vijaya laghubitta Bittiya Sanstha Ltd.",
+        "Himalayan Laghubitta Bittiya Sanstha Limited",
+        "Matribhumi Lagubitta Bittiya Sanstha Limited",
+        "Janautthan Samudayic Laghubitta Bittya Sanstha Limited",
+        "Api Power Company Ltd.",
+        "Himalayan Everest Insurance Limited Promoter",
+        "NMB  Microfinance Bittiya Sanstha Ltd.",
+        "Global IME Laghubitta Bittiya Sanstha Ltd.",
+        "Suryodaya Womi Laghubitta Bittiya Sanstha Limited",
+        "Shangrila Development Bank Ltd. Promoter Share",
+        "Mero Microfinance Bittiya Sanstha Ltd.",
+        "Hydorelectricity Investment and Development Company Ltd",
+        "Ngadi Group Power Ltd.",
+        "Green Development Bank Ltd.",
+        "National Laghubitta Bittiya Sanstha Limited",
+        "RSDC Laghubitta Bittiya Sanstha Ltd.",
+        "Khanikhola Hydropower Co. Ltd.",
+        "Dibyashwori Hydropower Ltd.",
+        "Arun Kabeli Power Ltd.",
+        "Forward Microfinance Laghubitta Bittiya Sanstha Limited",
+        "Synergy Power Development Ltd.",
+        "United Modi Hydropower Ltd.",
+        "Samata Gharelu Laghubitta Bittiya Sanstha Limited",
+        "Chhyangdi Hydropower Ltd.",
+        "Himalayan Power Partner Ltd.",
+        "Mahuli Laghubitta Bittiya Sanstha Limited",
+        "Nepal Hydro Developers Ltd.",
+        "Siddhartha Equity Fund",
+        "Support Microfinance Bittiya Sanstha Ltd.",
+        "Unnati Sahakarya Laghubitta Bittiya Sanstha Limited",
+        "Radhi Bidyut Company Ltd",
+        "Wean Nepal Laghubitta Bittiya Sanstha Limited",
+        "Nadep Laghubittiya bittya Sanstha Ltd.",
+        "Panchakanya Mai Hydropower Ltd",
+        "Kalika power Company Ltd",
+        "Ankhu Khola Jalvidhyut Company Ltd",
+        "Joshi Hydropower Development Company Ltd",
+        "Aarambha Chautari Laghubitta Bittiya Sanstha Limited",
+        "Upper Tamakoshi Hydropower Ltd",
+        "Samudayik Laghubitta Bittiya Sanstha Limited",
+        "Ghalemdi Hydro Limited",
+        "Asha Laghubitta Bittiya Sanstha Ltd",
+        "SHIVAM CEMENTS LTD",
+        "UNIVERSAL POWER COMPANY LTD",
+        "Mountain Hydro Nepal Limited",
+        "Panchthar Power Compant Limited",
+        "Ganapati Laghubitta Bittiya Sanstha Limited",
+        "Himalaya Urja Bikas Company Limited",
+        "Gurans Laghubitta Bittiya Sanstha Limited",
+        "10% Sanima Bank Limited Debenture",
+        "Swabhimaan Laghubitta Bittiya Sanstha Limited",
+        "Union Hydropower Limited",
+        "Infinity Laghubitta Bittiya Sanstha Limited",
+        "NABIL BALANCED FUND-2",
+        "RASUWAGADHI HYDROPOWER COMPANY LIMITED",
+        "SANJEN JALAVIDHYUT COMPANY LIMITED",
+        "10.5 % NEPAL INVESTMENT DEBENTURE 2082",
+        "Siddhartha Investment Growth Scheme - 2",
+        "Saptakoshi Development Bank Ltd",
+        "CITIZENS MUTUAL FUND 2",
+        "NIC Asia Balanced Fund",
+        "NMB 50",
+        "11% NIC Asia Debenture 082/83",
+        "10.25% Prabhu Bank  Debenture 2086",
+        "Sunrise First Mutual Fund",
+        "Himal Dolakha Hydropower Company Limited",
+        "Nepal Reinsurance Company Limited",
+        "10.35% Agricultural Bank Debenture 2083",
+        "NIC ASIA Laghubitta Bittiya Sanstha Limited",
+        "10% Nabil Debenture 2082",
+        "Sampada Laghubitta Bittiya Sanstha Limited",
+        "NRN Infrastructure and Development Limited",
+        "Laxmi Unnati Kosh",
+        "Liberty Energy Company Limited",
+        "Shiva Shree Hydropower Ltd",
+        "Sanima GIC Insurance Limited",
+        "8.5% SBL Debenture 2084",
+        "Mountain Energy Nepal Limited",
+        "United IDI Mardi RB Hydropower Limited.",
+        "Prabhu Mahalaxmi Life Insurance Limited",
+        "Chandragiri Hills Limited",
+        "Nepal Infrastructure Bank Limited",
+        "Sanima Large Cap Fund",
+        "GreenLife Hydropower Limited",
+        "Mahila Lagubitta Bittiya Sanstha Limited ",
+        "Kumari Equity Fund",
+        "Singati Hydro Energy Limited",
+        "Ru Ru Jalbidhyut Pariyojana Limited",
+        "Sunrise Bluechip Fund",
+        "CEDB Holdings Limited",
+        "Prabhu Select Fund",
+        "NIBL Samriddhi Fund -2",
+        "Jeevan Bikas Laghubitta  Bittya Sanstha Ltd",
+        "8.5% BOK Debenture 2086",
+        "8.5% Prabhu Bank Debenture 2087",
+        "NMB Debenture 8.50% - 2087/88",
+        "Samaj Laghubittya Bittiya Sanstha Limited",
+        "NIC Asia Select Fund 30",
+        "RBB Mutual Fund 1",
+        "Sanima Reliance Life Insurance Limited",
+        "Shangri-la Development Bank Debenture 2087",
+        "NIC ASIA Rinpatra 2088",
+        "8.5% RBBL Debenture 2083",
+        "Global IME Bank Limited Debenture 2086/87",
+        "Mailung Khola Jal Vidhyut Company Limited",
+        "Manushi Laghubitta Bittiya Sanstha Limited",
+        "Jyoti Bikash Bank Bond 2087",
+        "Sahas Urja Limited",
+        "Terhathum Power Company Limited",
+        "Mega Mutual Fund -1",
+        "Nabil Balanced Fund-3",
+        "Samling Power Company Limited",
+        "Nyadi Hydropower Limited",
+        "Madhya Bhotekoshi Jalavidyut Company Limited",
+        "Buddha Bhumi Nepal Hydropower Company Limited",
+        "Garima Debenture",
+        "Emerging Nepal Limited",
+        "NESDO Sambridha Laghubitta Bittiya Sanstha Limited",
+        "Civil Bank Debenture 2088",
+        "Everest Bank Limited",
+        "Green Ventures Limited",
+        "Balephi Hydropower Limited",
+        "Upakar Laghubitta Bittiya Sanstha Limited",
+        "CYC Nepal Laghubitta Bittiya Sanstha Limited",
+        "River Falls Power Limited",
+        "Century Debenture 2088",
+        "Dordi Khola Jal Bidyut Company Limited",
+        "NIC Asia Flexi CAP Fund",
+        "Kumari Dhanabriddhi Yojana",
+        "Bindhyabasini Hydropower Development Company Limited",
+        "Himalayan Hydropower Limited",
+        "10% Prime Debenture 2088",
+        "Upper Hewakhola Hydropower Company Limited",
+        "Swet-Ganga Hydropower & Construction Limited ",
+        "Mandakini Hydropower Limited",
+        "Upper Solu Hydro Electric Company Limited",
+        "Global IME Balanced Fund-1",
+        "Rapti Hydro And General Construction Limited",
+        "Hydorelectricity Investment and Development Company Limited Promoter",
+        "10.15% Prime Debenture 2084",
+        "Aviyan Laghubitta Bittiya Sanstha Limited",
+        "Sayapatri Hydropower Limited",
+        "People's Power Limited",
+        "Dhaulagiri Laghubitta Bittiya Sanstha Limited",
+        "NMB Sulav Investment Fund - 2",
+        "Sikles Hydropower Limited",
+        "11% KBL Debenture 2089",
+        "Eastern Hydropower Limited",
+        "Shrijanshil Laghubitta Bittiya Sanstha Limited",
+        "Peoples Hydropower Company Limited",
+        "Barahi Hydropower Public Limited",
+        "NIBL Growth Fund",
+        "Sanima Growth Fund",
+        "Unique Nepal Laghubitta Bittiya Sanstha Limited",
+        "Super Madi Hydropower Limited",
+        "Shuvam Power Limited",
+        "Super Mai Hydropower Limited",
+        "Maya Khola Hydropower Company Limited",
+        "Asian Hydropower Limited",
+        "Kalinchowk Darshan Limited",
+        "Everest Bank Limited Energy Bond",
+        "Sunrise Focused Equity Fund",
+        "Sanima Middle Tamor Hydropower Limited",
+        "Molung Hydropower Company Limited",
+        "Sagarmatha Jalabidhyut Company Limited",
+        "Aatmanirbhar Laghubitta Bittiya Sanstha Limited",
+        "Makar Jitumaya Suri Hydropower Limited",
+        "Mai Khola Hydropower Limited",
+        "Global IME Bank Debenture",
+        "Dolti Power Company Limited",
+        "Bhugol Energy Development Company Limited",
+        "City Hotel Limited",
+        "Prabhu Smart Fund",
+        "Menchhiyam Hydropower Limited",
+        "Ingwa Hydropower Limited",
+        "10.30% Standard Chartered Bank Limited Debenture",
+        "RBB Mutual Fund 2",
+        "Modi Energy Limited",
+        "Rawa Energy Development Limited",
+        "Siddhartha Investment Growth Scheme 3",
+        "Nepal Republic Media Limited",
+        "IME Life Insurance Company Limited",
+        "Citizens Super 30 Mutual Fund",
+        "Upper Syange Hydropower Limited",
+        "Ghorahi Cement Industry Limited",
+        "Three Star Hydropower Limited",
+        "Kutheli Bukhari Small Hydropower Limited",
+        "Laxmi Value Fund 2",
+        "Reliable Nepal Life Insurance Limited",
+        "Sun Nepal Life Insurance Company Limited",
+        "Manakamana Engineering Hydropower Limited",
+        "Upper Lohore Khola Hydropower Company Limited",
+        "Citizen Life Insurance Company Limited",
+        "Mandu Hydropower Limited",
+        "Hathway Investment Nepal Limited",
+        "Bhagawati Hydropower Development Company Limited",
+        "Mid Solu Hydropower Limited",
+        "Sonapur Minerals And Oil Limited",
+        "Mathillo Mailun Khola Jalvidhyut Limited",
+        "Trishuli Jal Vidhyut Company Limited ",
+        "Himalayan 80-20",
+        "Vision Lumbini Urja Company Limited ",
+        "Muktinath Krishi Company Limited",
+        "Chirkhwa Hydropower Limited ",
+        "Nepal Warehousing Company Limited ",
+        "Himalayan Reinsurance Limited",
+        "NIC ASIA Growth Fund-2",
+        "Kumari Sabal Yojana",
+        "Sarbottam Cement Limited",
+        "NIBL Stable Fund",
+        "Muktinath Mutual Fund 1",
+        "Guardian Micro Life Insurance Limited ",
+        "Garima Samriddhi Yojana",
+        "9% ICFC Finance Limited Debenture 2088",
+        "Nepal Micro Insurance Company Limited",
+        "Crest Micro Life Insurance Limited",
+        "NMB Hybrid Fund L- II",
+        "Everest Bank Limited Debenture 2091",
+        "Om Megashree Pharmaceuticals Limited",
+        "MBL Equity Fund",
+        "Pure Energy Limited",
+        "Reliable Samriddhi Yojana",
+        "Nifra Green Energy Debenture 6% - 2088/89",
+        "Trade Tower Limited",
+        "Sanvi Energy Limited",
+        "7% RBBL Debenture 2088",
+        "Bikash Hydropower Company Limited",
+        "Global IME Sammunat Yojana -2",
+        "Him Star Urja Company Limited",
+      ];
+
+      listofCompanies.forEach((company) => {
+        const option = document.createElement("option");
+        option.value = company;
+        option.textContent = company;
+        select.appendChild(option);
+      });
+      loadWatchlist();
+      loadUserInfo();
+    </script>
+  </body>
+</html>

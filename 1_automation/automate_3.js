@@ -1,3 +1,6 @@
+// run: node --env-file=.env automate_3.js
+// Oepns the updated file and 
+
 const fs = require('fs');
 const path = require('path');
 const { parse } = require('csv-parse/sync');
@@ -45,38 +48,54 @@ async function checkAlerts() {
 
     const result = await pool.query(query);
 
+    const userAlerts = {};
+
     for (const { stock_symbol_name, alert_unit_price, per_unit_cost, units, user_email } of result.rows) {
       const match = latestData.find(row =>
         row['Symbol'] === stock_symbol_name || row['Security Name'] === stock_symbol_name
       );
 
-      if (match) {
-        const currentPrice = parseFloat(match['Last Updated Price']);
-        const alertPrice = parseFloat(alert_unit_price);
-        const costPrice = parseFloat(per_unit_cost);
-        const numberOfUnits = parseFloat(units);
+      if (!match) {
+        console.warn(`No match found in CSV for: ${stock_symbol_name}`);
+        continue;
+      }
 
-        if (!isNaN(currentPrice) && !isNaN(alertPrice)) {
-          if (currentPrice > alertPrice) {
-            console.log(`ALERT: ${stock_symbol_name} is ABOVE alert (${currentPrice} > ${alertPrice})`);
+      const currentPrice = parseFloat(match['Last Updated Price']);
+      const alertPrice = parseFloat(alert_unit_price);
+      const costPrice = parseFloat(per_unit_cost);
+      const numberOfUnits = parseFloat(units);
 
-            if (user_email) {
-              await sendStockAlertEmail(user_email, stock_symbol_name, costPrice, currentPrice, numberOfUnits);
-            } else {
-              console.warn(`No email found for user watching ${stock_symbol_name}, skipping email.`);
-            }
-          } else {
-            console.log(` OK: ${stock_symbol_name} is within range (${currentPrice} <= ${alertPrice})`);
-          }
-        } else {
-          console.warn(` Price data missing for: ${stock_symbol_name}`);
+      if (isNaN(currentPrice) || isNaN(alertPrice)) {
+        console.warn(`Price data missing for: ${stock_symbol_name}`);
+        continue;
+      }
+
+      if (currentPrice > alertPrice) {
+        console.log(`ALERT: ${stock_symbol_name} is ABOVE alert (${currentPrice} > ${alertPrice})`);
+
+        if (!userAlerts[user_email]) {
+          userAlerts[user_email] = [];
         }
+
+        userAlerts[user_email].push({
+          symbol: stock_symbol_name,
+          costPrice,
+          currentPrice,
+          units: numberOfUnits
+        });
       } else {
-        console.warn(` No match found in CSV for: ${stock_symbol_name}`);
+        console.log(`OK: ${stock_symbol_name} is within range (${currentPrice} <= ${alertPrice})`);
       }
     }
+
+    // Send consolidated email per user
+    console.log("Sending email currently turned off")
+    // for (const [email, alerts] of Object.entries(userAlerts)) {
+    //   await sendStockAlertEmail(email, alerts);
+    // }
+
   } catch (err) {
-    console.error(' Error checking alerts:', err);
+    console.error('Error checking alerts:', err);
   } finally {
     await pool.end();
   }
@@ -84,36 +103,40 @@ async function checkAlerts() {
 
 // Updated sendStockAlertEmail function to include units and cost price
 
-async function sendStockAlertEmail(toEmail, symbol, costPrice, currentPrice, units) {
-  const profitPerUnit = currentPrice - costPrice;
-  const totalProfit = profitPerUnit * units;
-  const profitPercent = (profitPerUnit / costPrice) * 100;
-  console.log(toEmail)
+async function sendStockAlertEmail(toEmail, alerts) {
+  let stocksHtml = alerts.map(({ symbol, costPrice, currentPrice, units }) => {
+    const profitPerUnit = currentPrice - costPrice;
+    const totalProfit = profitPerUnit * units;
+    const profitPercent = (profitPerUnit / costPrice) * 100;
+
+    return `
+      <li>
+        <strong>${symbol}</strong><br>
+        Cost Price: ${costPrice.toFixed(2)} | Current Price: ${currentPrice.toFixed(2)}<br>
+        Units: ${units}<br>
+        Profit: ${totalProfit.toFixed(2)} (${profitPercent.toFixed(2)}% per unit)
+      </li>
+    `;
+  }).join("");
+
   const emailHtml = `
-    <h2>Stock Alert for ${symbol}</h2>
-    <p>Your stock <strong>${symbol}</strong> is doing well.</p>
-    <p>Here's a quick calculation based on current data:</p>
-    <ul>
-      <li>Cost Price per Unit: ₹${costPrice.toFixed(2)}</li>
-      <li>Units Owned: ${units}</li>
-      <li>Current Price: ₹${currentPrice.toFixed(2)}</li>
-      <li><strong>Potential Profit if sold today:</strong> ₹${totalProfit.toFixed(2)} (${profitPercent.toFixed(2)}% per unit)</li>
-    </ul>
-    <p>Keep an eye on your investment!</p>
+    <h2>Stock Alert</h2>
+    <p>The following stocks in your watchlist are above your alert price:</p>
+    <ul>${stocksHtml}</ul>
+    <p>Keep an eye on your investments!</p>
   `;
 
   try {
     const data = await resend.emails.send({
       from: 'AbhishekSilwal@abhisheksilwal.com.np',
       to: toEmail,
-      subject: `Stock Alert for ${symbol}`,
+      subject: `Stock Alerts (${alerts.length} stock(s) above alert price)`,
       html: emailHtml,
     });
-    console.log(`Email sent for ${symbol}:`, data);
+    console.log(`Email sent to ${toEmail} for ${alerts.length} stock(s):`, data);
   } catch (error) {
     console.error('Error sending email:', error);
   }
 }
-
 
 checkAlerts();
