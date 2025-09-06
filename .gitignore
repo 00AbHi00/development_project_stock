@@ -9,5 +9,7 @@ news_scraper/*/*.json
 /0_workingfile/*.csv
 
 1_automation/node_modules/*
+1_automation/.env
 
 2_workingfilev2/__pycache__/*.pyc
+
