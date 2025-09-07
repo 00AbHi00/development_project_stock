@@ -118,6 +118,7 @@ class User:
     # 2. SEBON Fee 0.015% (0.00015)
     
     # 3. DP Charge: Rs. 25 (flat)
+    
     def totalCostBuy(share_price, number_of_shares):
         calculated_total= share_price * number_of_shares
 

@@ -9,7 +9,7 @@ import constants as const
 
 @st.cache_data(show_spinner=False)
 def load_data():
-    return pd.read_csv('data/output4_fullFinal.csv')
+    return pd.read_csv('data/final_clean_data.csv')
 df = load_data()
 
 u1=U.User("Abhishek Silwal")
