@@ -16,7 +16,7 @@ def plot_stock(stock_name):
 
     # Limit to last 5 dates for range slider
     df_stock_last5 = df_stock.tail(10)
-
+ 
     fig = go.Figure(data=[go.Candlestick(
         x=df_stock['date'],
         open=df_stock['price.prevClose'],

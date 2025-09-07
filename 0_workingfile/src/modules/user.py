@@ -1,16 +1,51 @@
 # src/modules/user.py
-from modules import utils, stock
-from db.connection import get_connection
-import streamlit as st
+import os
+import json
 import datetime as dt
+import streamlit as st
+
+USERFILES_DIR = "userfiles"
 
 class User:
     def __init__(self, uid, name, money=100000):
         self.uid = uid
-        self.name = name
-        self.money = money
-        self.portfolio = {}  # symbol -> {'quantity', 'avg_price'}
-        self.transactions = []
+        self.username = name  # store username
+        self.filepath = os.path.join(USERFILES_DIR, f"user_{uid}.json")
+
+        # Load existing user data if file exists
+        if os.path.exists(self.filepath):
+            with open(self.filepath, "r") as f:
+                data = json.load(f)
+                self.username = data.get("username", name)
+                self.money = data.get("money", money)
+                self.portfolio = data.get("portfolio", {})
+                self.transactions = data.get("transactions", [])
+        else:
+            self.money = money
+            self.portfolio = {}
+            self.transactions = []
+            self.save_user_data()  # create file for first time
+
+    def save_user_data(self):
+        os.makedirs(USERFILES_DIR, exist_ok=True)
+        data = {
+            "uid": self.uid,
+            "username": self.username,
+            "money": self.money,
+            "portfolio": self.portfolio,
+            "transactions": [
+                {
+                    "type": t["type"],
+                    "symbol": t["symbol"],
+                    "quantity": t["quantity"],
+                    "price": t["price"],
+                    "total_cost": t.get("total_cost", t.get("total_proceeds", 0)),
+                    "time": t["time"] if isinstance(t["time"], str) else t["time"].isoformat()
+                } for t in self.transactions
+            ]
+        }
+        with open(self.filepath, "w") as f:
+            json.dump(data, f, indent=4)
 
     # Calculate total cost including fees for buying
     def total_buy_cost(self, share_price, quantity):
@@ -59,13 +94,12 @@ class User:
         total = selling_total - (sebonFee + brokerFee + capital_gains_tax + dpCharge)
         return total
 
-    # Buy shares with confirmation and minimum 10 shares
+    # Buy shares
     def buy(self, stock_row, quantity):
-        # Do NOT put st.button() here
         if quantity < 10:
             st.warning("You must buy at least 10 shares.")
             return False
-
+        
         total_cost = self.total_buy_cost(stock_row['Average Price'], quantity)
 
         if total_cost > self.money:
@@ -74,7 +108,6 @@ class User:
 
         self.money -= total_cost
 
-        # Update portfolio
         symbol = stock_row['company.name']
         if symbol in self.portfolio:
             existing = self.portfolio[symbol]
@@ -87,8 +120,7 @@ class User:
                 'quantity': quantity,
                 'avg_price': stock_row['Average Price']
             }
-            
-        # Record transaction
+
         self.transactions.append({
             'type': 'buy',
             'symbol': symbol,
@@ -97,52 +129,50 @@ class User:
             'total_cost': total_cost,
             'time': dt.datetime.now()
         })
-        # self.update_db(symbol)
-        return True  
 
-    
-    # Sell shares with confirmation and minimum 10 shares
+        self.save_user_data()
+        return True
+
+    def update_json(self):
+        """Persist user portfolio and money to JSON file."""
+        os.makedirs(USERFILES_DIR, exist_ok=True)
+        with open(os.path.join(USERFILES_DIR, f"user_{self.uid}.json"), "w") as f:
+            json.dump({
+                "username": self.username,
+                "portfolio": self.portfolio,
+                "money": self.money
+            }, f, indent=4)
+            
+    # Sell shares
     def sell(self, stock_obj, quantity):
         if quantity < 10:
             st.warning("You must sell at least 10 shares.")
             return False
 
-        if stock_obj.symbol not in self.portfolio or self.portfolio[stock_obj.symbol]['quantity'] < quantity:
+        symbol = stock_obj.symbol
+        if symbol not in self.portfolio or self.portfolio[symbol]['quantity'] < quantity:
             st.warning("Not enough shares to sell")
             return False
 
-        avg_price = self.portfolio[stock_obj.symbol]['avg_price']
+        avg_price = self.portfolio[symbol]['avg_price']
         total_proceeds = self.total_sell_proceeds(avg_price, stock_obj.getPrice(), quantity)
-        st.info(f" You will receive Rs. {total_proceeds:.2f} for selling {quantity} shares (after fees and capital gains tax)")
 
-        if st.button(f"Confirm Sell {quantity} shares of {stock_obj.symbol}"):
-            self.portfolio[stock_obj.symbol]['quantity'] -= quantity
-            if self.portfolio[stock_obj.symbol]['quantity'] == 0:
-                del self.portfolio[stock_obj.symbol]
-            self.money += total_proceeds
-            stock_obj.quantity += quantity
-            self.transactions.append({
-                'type':'sell',
-                'symbol':stock_obj.symbol,
-                'quantity':quantity,
-                'price':stock_obj.getPrice(),
-                'total_proceeds': total_proceeds,
-                'time':dt.datetime.now()
-            })
-            st.success(f" Sold {quantity} shares of {stock_obj.symbol}. New balance: Rs. {self.money:.2f}")
-            self.update_db(stock_obj.symbol)
-            return True
+        self.portfolio[symbol]['quantity'] -= quantity
+        if self.portfolio[symbol]['quantity'] == 0:
+            del self.portfolio[symbol]
 
-    def update_db(self, symbol):
-        conn = get_connection()
-        cur = conn.cursor()
-        # insert or update portfolio table
-        cur.execute("""
-            INSERT INTO public.portfolio(uid, symbol, quantity, avg_price)
-            VALUES(%s,%s,%s,%s)
-            ON CONFLICT(uid,symbol)
-            DO UPDATE SET quantity=EXCLUDED.quantity, avg_price=EXCLUDED.avg_price
-        """, (self.uid, symbol, self.portfolio[symbol]['quantity'], self.portfolio[symbol]['avg_price']))
-        conn.commit()
-        cur.close()
-        conn.close()
+        self.money += total_proceeds
+        stock_obj.quantity += quantity
+
+        self.transactions.append({
+            'type': 'sell',
+            'symbol': symbol,
+            'quantity': quantity,
+            'price': stock_obj.getPrice(),
+            'total_proceeds': total_proceeds,
+            'time': dt.datetime.now()
+        })
+
+        self.save_user_data()
+        st.success(f"Sold {quantity} shares of {symbol}. New balance: Rs. {self.money:.2f}")
+        return True
