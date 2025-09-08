@@ -7,7 +7,7 @@
     "status": "Open",
     "share_to_apply": 10,
     "probability": "0.0265878336",
-    "days_remaining": 4
+    "days_remaining": 2
   },
   {
     "company": "JHAPA(PUBLIC)",
@@ -17,7 +17,7 @@
     "status": "Open",
     "share_to_apply": 10,
     "probability": "0.0771492953",
-    "days_remaining": 3
+    "days_remaining": 1
   },
   {
     "company": "JHAPA(PUBLIC)",
@@ -27,6 +27,6 @@
     "status": "Open",
     "share_to_apply": 10,
     "probability": "0.0771492953",
-    "days_remaining": 3
+    "days_remaining": 1
   }
 ]

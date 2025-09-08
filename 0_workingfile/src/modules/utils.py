@@ -126,6 +126,8 @@ def process_corporate_actions(u1, current_date):
 
                     total_qty += new_qty
                     weighted_price_sum += new_qty * avg_price_old
+                    
+                    
 
                     # st.write(f"Found in portfolio: {merger_company} | Old Qty={qty_old}, Swap={swap_num}, New Qty={new_qty}")
 
@@ -176,6 +178,7 @@ def process_corporate_actions(u1, current_date):
                 u1.money += cash_received
                 u1.update_json()
                 st.success(f"Dividend applied: {company}, Bonus={bonus_qty} shares, Cash={cash_received:.2f}")
+                company= "NAN" if company is None else company
                 
                 # Log dividend to history
                 history.log_action(

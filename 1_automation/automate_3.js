@@ -89,10 +89,10 @@ async function checkAlerts() {
     }
 
     // Send consolidated email per user
-    console.log("Sending email currently turned off")
-    // for (const [email, alerts] of Object.entries(userAlerts)) {
-    //   await sendStockAlertEmail(email, alerts);
-    // }
+    // console.log("Sending email currently turned off")
+    for (const [email, alerts] of Object.entries(userAlerts)) {
+      await sendStockAlertEmail(email, alerts);
+    }
 
   } catch (err) {
     console.error('Error checking alerts:', err);
