@@ -17,6 +17,8 @@ if 'user' not in st.session_state:
         st.session_state['user'] = User(uid=1, name=username_input)
         st.rerun()
 
+
+
 if 'user' in st.session_state:
     u1 = st.session_state['user']
 
@@ -27,6 +29,7 @@ if 'user' in st.session_state:
 
     # utils.process_corporate_actions(u1, current_date)
     # Next Day button
+    
     if st.button("Next Day"):
         utils.add_days(1)  
         utils.process_corporate_actions(u1, current_date)
