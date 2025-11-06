@@ -74,6 +74,7 @@ router.delete('/:wid', requireLogin, async (req, res) => {
 
 // Update watchlist entry by wid
 router.put('/:wid', requireLogin, async (req, res) => {
+  console.log('req')
   try {
     const { wid } = req.params;
     const { stock_symbol_name, per_unit_cost, units, alert_unit_price } = req.body;

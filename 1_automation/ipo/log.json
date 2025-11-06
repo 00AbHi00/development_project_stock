@@ -173,5 +173,39 @@
         "days_remaining": 1
       }
     ]
+  },
+  {
+    "timestamp": "2025-11-02T18:28:05.547Z",
+    "openIPOs": []
+  },
+  {
+    "timestamp": "2025-11-06T02:47:16.389Z",
+    "openIPOs": [
+      {
+        "company": "SYPNL(PUBLIC)",
+        "units": "4076156",
+        "issueOpen": "2025-11-05",
+        "issueClose": "2025-11-09",
+        "status": "Open",
+        "share_to_apply": 10,
+        "probability": "0.6643749109",
+        "days_remaining": 3
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-11-06T02:59:21.304Z",
+    "openIPOs": [
+      {
+        "company": "SYPNL(PUBLIC)",
+        "units": "4076156",
+        "issueOpen": "2025-11-05",
+        "issueClose": "2025-11-09",
+        "status": "Open",
+        "share_to_apply": 10,
+        "probability": "0.6643749109",
+        "days_remaining": 3
+      }
+    ]
   }
 ]
